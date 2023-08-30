@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Theme Changer</title>
+</head>
+
+<body data-dynamic-style>
+    <button id="myButton" class="btn-red">Click Me!</button>
+
+    <form id="myForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <br>
+        <button type="submit">Submit</button>
+    </form>
+
+    <div>
+        <button onclick="cambiarTema()">Cambiar Tema</button>
+    </div>
+    <script defer type="module">
+        import styleNTheme from './../dist/bundle.js';
+
+        console.log(styleNTheme, 'myLapgModule')
+        // Inicializar lapg con variables opcionales
+        const style = styleNTheme({
+            variables: {
+                red: 'red'
+            }
+        });
+
+        // Definir un tema oscuro
+        const darkTheme = {
+            div: {
+                backgroundColor: '$red',
+                button: {
+                    backgroundColor: 'black',
+                    color: 'white'
+                },
+            },
+            '.btn-red': {
+                backgroundColor: 'red',
+                color: 'white'
+            },
+            form:{
+                backgroundColor:'blue',
+                input:{
+                    backgroundColor:'yellow'
+                }
+            }
+        };
+
+        // Definir un tema claro
+        const lightTheme = {
+            button: {
+                backgroundColor: 'white',
+                color: 'black'
+            },
+            '.btn-red': {
+                backgroundColor: 'pink',
+                color: 'black'
+            },
+            form:{
+                backgroundColor:'yellow',
+                input:{
+                    backgroundColor:'blue'
+                }
+            }
+        };
+
+        // Cargar los temas en lapg
+        style.loadThemeFromJSON('dark', darkTheme);
+        style.loadThemeFromJSON('light', lightTheme);
+
+        // Variable para mantener el registro del tema actual
+        let currentTheme = 'dark';
+
+        // Función para cambiar el tema
+        function cambiarTema() {
+            currentTheme = currentTheme === 'dark' ? 'light' : 'dark'; // Alternar entre temas
+            const themeContext = style.ThemeContext;
+            themeContext.setTheme(currentTheme);
+            console.log('Current Theme:', themeContext.currentTheme);
+            themeContext.updateTheme();  // Actualizar el DOM con el nuevo tema
+        }
+
+        // Configurar el evento de clic para el botón
+        document.getElementById("myButton").addEventListener("click", function () {
+            alert("Botón clickeado");
+        });
+
+        // Manejar el envío del formulario
+        document.getElementById("myForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const formDataObject = {};
+            formData.forEach((value, key) => {
+                formDataObject[key] = value;
+            });
+            console.log("Form Data:", formDataObject);
+        });
+
+        // Cambiar el tema al cargar la página
+        cambiarTema();
+
+        // Exponer la función cambiarTema al objeto global window para que sea accesible desde el HTML
+        window.cambiarTema = cambiarTema;
+
+    </script>
+</body>
+
+</html>
+|

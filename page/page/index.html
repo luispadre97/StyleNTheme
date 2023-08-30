@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>StyleNTheme Library Documentation</title>
+  <!-- <script defer src="dist/bundle.js" type="module"></script> -->
+
+</head>
+
+<body data-dynamic-style>
+
+  <header class="hero-section">
+    <h1>🎨 StyleNTheme Library</h1>
+    <p>Your ultimate guide to StyleNTheme's capabilities, APIs, and more.</p>
+    <a href="#getting-started" class="cta-button">Get Started</a>
+  </header>
+
+  <nav class="sticky-nav" data-dynamic-style>
+    <ul>
+      <li><a href="#introduction">Introduction</a></li>
+      <li><a href="#whats-new">What's New</a></li>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#getting-started">Getting Started</a></li>
+      <li><a href="#examples">Examples</a></li>
+      <li><a href="#api">API</a></li>
+      <li><a href="#advanced-use-cases">Advanced Use Cases</a></li>
+      <li><a href="#best-practices">Best Practices</a></li>
+      <li><a href="#community">Community</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#contribute">Contribute</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <section id="introduction" class="content-section" data-dynamic-style>
+      <h2>👋 Introduction</h2>
+      <p>StyleNTheme is not just another styling library. It's a game-changer for your UI/UX. Adapt styles on the
+        fly, make your apps themable, and keep your codebase clean.</p>
+    </section>
+
+
+
+    <section id="features" class="content-section" data-dynamic-style>
+      <h2>✨ Features</h2>
+      <p>Why StyleNTheme? Here are some features that set us apart:</p>
+      <ul>
+        <li>🎨 Easy Theming</li>
+        <li>💡 Dynamic Styling</li>
+        <li>🚀 High Performance</li>
+        <li>🔌 Plug-n-Play</li>
+        <li>📱 Responsive</li>
+        <li>🌐 Cross-browser Compatibility</li>
+      </ul>
+    </section>
+
+    <section id="getting-started" class="content-section">
+      <h2>🚀 Getting Started</h2>
+      <p>To kick things off, you can install StyleNTheme via npm. Trust us, it's as easy as pie:</p>
+      <pre><code>npm install stylentheme</code></pre>
+      <p>Or, be a maverick and download it directly from our <a href="#" class="inline-link">GitHub
+          repository</a>.</p>
+    </section>
+
+    <section id="examples" class="content-section">
+      <h2>💡 Examples</h2>
+      <p>Still skeptical? Here are some jaw-dropping examples of what you can achieve:</p>
+      <ul class="example-list">
+        <li>🌓 Dynamic theme switching</li>
+        <li>🛠 Style management in SPAs</li>
+        <li>🔗 Easy integration with existing projects</li>
+      </ul>
+      <button id="toggleTheme" class="cta-button" onclick="toggleTheme()">Toggle Theme</button>
+
+    </section>
+
+    <section id="api" class="content-section">
+      <h2>📚 API</h2>
+      <p>Take full control with our easy-to-digest, yet powerful API:</p>
+      <ul class="api-list">
+        <li><code>loadThemeFromJSON(themeName, themeJSON)</code>: Be the lord of your themes.</li>
+        <li><code>setTheme(themeName)</code>: Switch themes like you switch playlists.</li>
+        <li><code>updateTheme()</code>: Keep it fresh!</li>
+      </ul>
+    </section>
+
+    <section id="advanced-use-cases" class="content-section">
+      <h2>🚀 Advanced Use Cases</h2>
+      <h3>For Microfrontends</h3>
+      <ul>
+        <li>Modularity and isolation, perfect for microfrontends.</li>
+        <li>Streamline collaboration between multiple teams.</li>
+        <li>Interoperability among different technology stacks.</li>
+      </ul>
+    </section>
+
+    <section id="best-practices" class="content-section">
+      <h2>🛠 Best Practices</h2>
+      <p>Get the most out of StyleNTheme by following these best practices:</p>
+      <ul>
+        <li>Always define fallback themes.</li>
+        <li>Keep your themes modular.</li>
+        <li>Optimize your variables.</li>
+      </ul>
+    </section>
+
+    <section id="faq" class="content-section">
+      <h2>🙋‍♀️ FAQ</h2>
+      <ul>
+        <li>Is StyleNTheme free to use?</li>
+        <li>How do I contribute to StyleNTheme?</li>
+        <li>Do I need to be an expert in CSS to use StyleNTheme?</li>
+      </ul>
+    </section>
+  </main>
+
+</body>
+<script defer type="module">
+
+  import styleNTheme from "./public/dist/bundle.js"
+  import { vLight } from './../src/themes/light.js';
+  import { vDark } from './../src/themes/dark.js';
+  import { Theme } from './../src/theme.js'
+
+
+  const themeContext = ThemeContext.getInstance();
+
+  // Inicializa con el tema 'light' como predeterminado
+  themeContext.init(vLight);
+  themeContext.loadTheme('light', Theme);
+  themeContext.loadTheme('dark', Theme);
+  themeContext.setTheme('light');
+
+  // Función para cambiar el tema
+  function toggleTheme() {
+    const currentTheme = themeContext.currentTheme;
+    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+    themeContext.init(newTheme === 'light' ? vLight : vDark);
+    themeContext.setTheme(newTheme);
+  }
+
+  // Hace que la función sea accesible globalmente
+  window.toggleTheme = toggleTheme;
+</script>
+
+</html>
