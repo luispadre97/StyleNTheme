@@ -1,6 +1,6 @@
-import { generateCSSRules, /*applyStyles*/applyGlobalStyles } from './HelperFunctions';  // Asegúrate de importar desde la ubicación correcta
+import { generateCSSRules, /*applyStyles*/applyGlobalStyles } from './HelperFunctions'; 
 
-type Theme = { [key: string]: any };  // Define tu propia estructura de tema aquí
+type Theme = { [key: string]: any }; 
 
 interface IThemeContextInstance {
     themes: { [key: string]: Theme };

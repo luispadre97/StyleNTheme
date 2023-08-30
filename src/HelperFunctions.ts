@@ -1,4 +1,3 @@
-// Ficticio: Asegúrate de importar esto desde donde realmente se defina.
 import { ThemeContext } from './ThemeContext';
 
 interface Style {

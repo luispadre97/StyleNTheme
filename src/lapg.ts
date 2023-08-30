@@ -1,4 +1,4 @@
-import { ThemeContext } from './ThemeContext'; // Make sure ThemeContext is defined correctly
+import { ThemeContext } from './ThemeContext'; 
 import { themeFactory } from './ThemeFactory';
 
 interface IThemeContext {
@@ -21,7 +21,7 @@ declare global {
 
 
 const lapg = (options: LapgOptions) => {
-  const themeContextInstance = ThemeContext.getInstance() as IThemeContext; // Cast to the correct type
+  const themeContextInstance = ThemeContext.getInstance() as IThemeContext;
   themeContextInstance.init(options.variables || {});
 
   return {
@@ -39,7 +39,6 @@ const lapg = (options: LapgOptions) => {
   };
 };
 
-// Attach to global scope
 (function (global: Window) {
   global.lapg = lapg;
   global.ThemeContext = ThemeContext;
